@@ -1,0 +1,470 @@
+<!-- blue ribbon -->
+<section class="p-0">
+    <div class="blue-ribbon">
+        <img class="left-car" src="assets/img/left-car.png" alt="transparent car">
+        <div class="container sml-container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="blue-ribbon-cont">
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="14px" height="23px">
+                                <path fill-rule="evenodd"
+                                    d="M13.182,8.373 L7.629,7.966 L11.078,1.393 L4.403,0.905 L0.637,11.858 L5.376,12.205 L2.520,22.365 L13.182,8.373 Z" />
+                            </svg>
+                            Live Feed
+                        </a>
+                        <p>Someone in Darien just found they could save $4000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="right-car" src="assets/img/right-car.png" alt="transparent car">
+    </div>
+</section>
+<!-- blue ribbon end -->
+
+<!-- banner -->
+<section class="bg-gry mobile-bg-white">
+    <div class="banner">
+        <div class="container sml-container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="banner-heading">
+                        <h3><span>Pleasurable</span> Car Buying</h3>
+                    </div>
+
+                    <div class="banner-form">
+                        <form class="needs-validation" [formGroup]="makeModelForm" novalidate (submit)="onSubmit()">
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="form-group custom_select">
+                                        <select class="custom-select" formControlName="makeId" required (change)="getModels($event)">
+                                            <option value="">Select Make (ex. Toyota)</option>
+                                            <option value="{{make.makeId}}" *ngFor="let make of makes">{{make.makeName}}</option>
+                                        </select>
+                                        <div class="invalid-feedback">Select a year</div>
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group custom_select">
+                                        <select class="custom-select" formControlName="modelId" required>
+                                            <option value="">Select Model (ex. Camry)</option>
+                                            <option value="{{model.modelId}}" *ngFor="let model of models">{{model.modelName}}</option>
+                                        </select>
+                                        <div class="invalid-feedback">Select a Make</div>
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <i class="icofont-location-pin"></i>
+                                        <input type="text" class="form-control" formControlName="zipCode" id="validationDefault05"
+                                            placeholder="Zip Code" required>
+                                        <div class="invalid-feedback">Enter Valid Zip</div>
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="start-btn" type="submit">
+                                <img class="main-btn" src="assets/img/start-btn.png" alt="start button">
+                                <img class="pushed-btn" src="assets/img/btn-pushed.png" alt="start button pushed">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="banner-cont">
+                        <div class="banner-img pr-sm-3">
+                            <img src="assets/img/banner-phone.png" alt="phone">
+                        </div>
+                        <div class="banner-txt px-sm-3">
+                            <h5>I’ll Pass On The Calls, Thanks.</h5>
+                            <p>Car shopping should’t mean you need to hand overyour contact details and become
+                                inundated with annoying calls</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="banner-cont best-price-box">
+                        <div class="banner-img">
+                            <img src="assets/img/best-price.png" alt="phone">
+                        </div>
+                        <div class="banner-txt">
+                            <h5>What’s Your Best Price</h5>
+                            <p>Get the best prices form dealers withour having to drive all over town. Negociate
+                                without ever having to pick up the phone.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="banner-counter">
+                        <div class="counter-wrap">
+                            <div class="counter-box">
+                                <ul>
+                                    <li>$</li>
+                                    <li class="countLb">0</li>
+                                    <li class="countLb">4</li>
+                                    <li class="countLb">0</li>
+                                    <li class="countLb">0</li>
+                                    <li class="countLb">0</li>
+                                </ul>
+                            </div>
+                            <h6>Highest Saving This Week</h6>
+                        </div>
+                        <div class="counter-wrap">
+                            <div class="counter-box">
+                                <ul>
+                                    <li>$</li>
+                                    <li class="countLb">0</li>
+                                    <li class="countLb">3</li>
+                                    <li class="countLb">0</li>
+                                    <li class="countLb">0</li>
+                                    <li class="countLb">0</li>
+                                </ul>
+                            </div>
+                            <h6>Current Average Savings</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- banner end -->
+
+<!-- How It Works -->
+<section>
+    <div class="how_it_works">
+        <div class="container sml-container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="works_heading">
+                        <h2>How It Works</h2>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="works_slider">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
+                                    <div class="work-nav-handle">P <span></span><img src="assets/img/slider-tip.png"
+                                            alt="slider tip"></div>
+                                </li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1">
+                                    <div class="work-nav-handle">R <span></span><img src="assets/img/slider-tip.png"
+                                            alt="slider tip"></div>
+                                </li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2">
+                                    <div class="work-nav-handle">N <span></span><img src="assets/img/slider-tip.png"
+                                            alt="slider tip"></div>
+                                </li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="3">
+                                    <div class="work-nav-handle">D <span></span><img src="assets/img/slider-tip.png"
+                                            alt="slider tip"></div>
+                                </li>
+                                <div class="slider-line"></div>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="work-slider-item">
+                                        <h3><span>Pick</span> and build a car to your exact specification using our
+                                            online tool.</h3>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="work-slider-item">
+                                        <h3><span>Register</span> once you've built your car, and we'll get dealers
+                                            to complete.</h3>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="work-slider-item">
+                                        <h3><span>No</span> Committment to buy until you have met your exact
+                                            specification.</h3>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="work-slider-item">
+                                        <h3><span>Dealers</span> bid for your business. Sit back while they underbid
+                                            each other to get you the lowest price on your car.</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- How It Works end -->
+
+<!-- why use vehiko -->
+<section class="bg-gry">
+    <div class="why-vehiko">
+        <div class="container sml-container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="why-vehiko-txt">
+                        <h2>Why Use Vehiko?</h2>
+                        <p>Vehiko aims to provide the perfect solution for buying a new vehicle online. Our mission
+                            is to eliminate the hassle and stress traditionally associated with this process. if
+                            you're serious about buying new car, try our one-of-a-kind reverse auction service,
+                            where local dealers bid against each other to get you the lowest price.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="why-vehiko-img">
+                        <img class="img-fluid" src="assets/img/why-img.png" alt="car">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- why use vehiko end -->
+
+<!-- Browse by Brand -->
+<section>
+    <div class="browse_brand">
+        <div class="container sml-container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="brand-content">
+                        <div class="heading text-center mb-4">
+                            <h2>Browse by Brand</h2>
+                        </div>
+                        <ul class="switch-tab">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="new-car-tab" data-toggle="tab"
+                                        href="#new-car" role="tab" aria-controls="new-car" aria-selected="true">New
+                                        Car</a>
+                                    <a class="nav-item nav-link" id="used-car-tab" data-toggle="tab" href="#used-car"
+                                        role="tab" aria-controls="used-car" aria-selected="false">Used Car</a>
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="new-car" role="tabpanel"
+                                    aria-labelledby="new-car-tab">
+                                    <ul class="barnd-grid">
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand1.png" alt="brand"><span>Acura</span></a></li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand2.png" alt="brand"><span>FIAT</span></a></li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand3.png" alt="brand"><span>Kia</span></a></li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand4.png" alt="brand"><span>Mitsubishi</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand5.png" alt="brand"><span>Alfa Romeo</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand6.png" alt="brand"><span>Ford</span></a></li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand7.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand8.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand9.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand10.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand11.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand12.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand13.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand14.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand15.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand16.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand17.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand18.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand19.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand20.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand21.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand22.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand23.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand24.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand25.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand26.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand27.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand28.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane fade" id="used-car" role="tabpanel" aria-labelledby="used-car-tab">
+                                    <ul class="barnd-grid">
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand1.png" alt="brand"><span>Acura</span></a></li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand2.png" alt="brand"><span>FIAT</span></a></li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand3.png" alt="brand"><span>Kia</span></a></li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand4.png" alt="brand"><span>Mitsubishi</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand5.png" alt="brand"><span>Alfa Romeo</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand6.png" alt="brand"><span>Ford</span></a></li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand7.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand8.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand9.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand10.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand11.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand12.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand13.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand14.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand15.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand16.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand17.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand18.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand19.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand20.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand21.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand22.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand23.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand24.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand25.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand26.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand27.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                        <li class="brand-item"><a href="#"><img class="img-fluid"
+                                                    src="assets/img/brand28.png" alt="brand"><span>Land Rover</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Browse by Brand end -->
+
+<!-- Your Guide -->
+<section class="bg-gry">
+    <div class="your-guide">
+        <div class="container sml-container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="your-guide-wrap">
+                        <div class="heading">
+                            <h2>Your Guide to the Top Cars and Trucks</h2>
+                            <p>We sifted through the data and found the best cars and trucks in every category, so
+                                you can make a research-driven decision on the car you want.</p>
+                        </div>
+                        <div class="guide-main-wrap">
+                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+                                <div ngxSlickItem class="guide-item"><a href="#"><img src="../../assets/img/car1.png" alt="car">Best
+                                        Vans</a>
+                                </div>
+                                <div ngxSlickItem class="guide-item"><a href="#"><img src="../../assets/img/car2.png" alt="car">Best
+                                        Trucks</a></div>
+                                <div ngxSlickItem class="guide-item"><a href="#"><img src="../../assets/img/car3.png" alt="car">Best
+                                        SUVs</a>
+                                </div>
+                                <div ngxSlickItem class="guide-item"><a href="#"><img src="../../assets/img/car4.png" alt="car">Best
+                                        Sedans</a></div>
+                                <div ngxSlickItem class="guide-item"><a href="#"><img src="../../assets/img/car5.png" alt="car">Best
+                                        Hatchbacks</a></div>
+                                <div ngxSlickItem class="guide-item"><a href="#"><img src="../../assets/img/car6.png" alt="car">Best
+                                        Coupes</a></div>
+                                <div ngxSlickItem class="guide-item"><a href="#"><img src="../../assets/img/car1.png" alt="car">Best
+                                        Vans</a>
+                                </div>
+                            </ngx-slick-carousel>
+                            <span class="sl-btn prev"><i class="icofont-simple-left"></i></span>
+                            <span class="sl-btn next"><i class="icofont-simple-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Your Guide end -->

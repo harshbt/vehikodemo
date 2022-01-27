@@ -1,0 +1,170 @@
+@media (max-width: 1600px){
+}
+@media (max-width: 1570px){
+}
+@media (max-width: 1400px){
+}
+@media (max-width: 1399px){
+}
+@media (max-width: 1349px){
+}
+@media (max-width: 1200px){
+	.car_desc a{width: 100px;}
+	.sl-btn{display:none!important;}
+	.search_result{margin-left: 10px;}
+	.login_user{flex:0 0 37px;}
+	.overflow-x{max-height: 690px;}
+}
+@media (max-width: 1100px){
+}
+@media (max-width: 992px){
+    .left-car, .right-car {width: 100px;}
+    section {padding: 40px 0px;}
+    .banner-form {margin-bottom: 0;}
+    .banner-cont {margin: 15px 0;}
+    .banner-img img {max-width: 100%;}
+    .works_heading { margin-bottom: 20px; height: auto;}
+    .ftr-about {margin-bottom: 40px;}
+	.login_user{display: none;}
+	.navbar-light .navbar-toggler{border:none;}
+	.header{box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;position: relative;}
+	.car-info{margin-top: 30px;}
+	.jeep-photo{background:none;}
+	.jeep-photo img{display:none!important;}
+	.jeep-photo .text-center{text-align:left !important;margin-top: 20px;}
+	.trim-bg{padding: 0px 0px 0px}
+	.like_show.text-right{text-align:left !important;margin-top: 20px;}
+	.jeep-overview{margin-bottom:30px;}
+	.filter_action{display:block;}
+	.filter_style{display:none;}
+	.filter_style.show{display:block;}
+	.sharing_time select{font-size: 13px;padding: 0px 0px 0px 2px;}
+	.sharing-input label{left: 10px;}
+	.experience{margin-bottom:15px;}
+	.experience img{display:block;width: 100%;}
+	.experience p img{display:inline-block;width: auto;}
+	.search_result{display:none;}
+	.loaction_mobile{display:block;margin-bottom:20px;}
+	.loaction_mobile .search_result {display:block;background: #f5f5f5;border-top: 2px solid #ddd;padding: 6px;margin:0;display:none;}
+	.loaction_mobile .search_result select, .loaction_mobile .search_result input{background-color:transparent;}
+	.loaction_mobile .search_result .search_name{margin-right:0;margin-top:10px;}
+	.search_result.show{display:block !important;}
+	.top_band{display:block !important;}
+	.price_div label{padding: 0px 10px;}
+}
+@media (max-width: 767px){
+    h2 {font-size: 20px;}
+    section {padding: 22px 0px;}
+    .banner-counter { flex-direction: column; margin-top: 30px;}
+    .blue-ribbon-cont {display: block;}
+    .banner-form form {flex-direction: column;}
+    .banner-form .form-row div:nth-child(1) .form-group select {border-radius: 0;}
+    .banner-form .form-row { padding: 14px 10px; border-radius: 0;}
+    .banner-form .form-group {margin-right: 0;margin-bottom: 6px;}
+    .banner-form .form-row:before { width: 100%; height: 67px; top: 99%; left: 0;}
+    .banner-cont {flex-direction: column;}
+    .banner-txt { text-align: center; margin-top: 14px;}
+    .banner-form .invalid-feedback, .banner-form .valid-feedback{position: static; margin-bottom: 8px;}
+    .work-slider-item {padding-left: 20px;}
+    .work-slider-item h3 { font-size: 16px; line-height: 24px; margin-bottom:5px;}
+    .work-slider-item p { font-size: 14px; line-height: 20px;}
+    .why-vehiko-txt p { font-size: 14px; line-height: 24px;}
+    .copyright {flex-direction: column;}
+    .quick-links ul { column-count: 2; margin-bottom: 30px;}
+	.blue-ribbon-cont p{font-size: 14px;line-height: 22px;}
+	h3 {font-size: 22px;}
+	.custom_select select.custom-select, .banner-form .custom-select, .banner-form .form-control{border-radius:0;}
+	.blue-ribbon, .banner-cont, .banner-counter, .login_user{display: none;}
+	.mobile-bg-white{background-color:#fff;}
+	.works_heading{display:block;}
+	.works_heading h2{text-align:center;}
+	.brand-item {flex: 0 0 50%;min-width: auto;}
+	.trim_options{display:none;}
+	.jeep-info_bottm{display:block !important;}
+	.trim-jeep{align-items: flex-start !important;}
+	.jeep-info ul{display:none;}
+	.jeep-info h3{font-size:18px;}
+	.brand_btn{height: 32px;line-height: 32px;padding: 0px 20px;margin: 0px 0 20px;font-size:14px;}
+	.jeep-info {padding-top: 20px;}
+	.jeep-content a span{display:inline-block;}
+	.jeep-content a{display: block;margin-top: 10px;font-size: 13px;}
+	.msrp-width{display:none;}
+	.engine-type{display:block !important;padding: 10px;}
+	.price-right{text-align:right;}
+	.price-right span{font-size:14px;display: inline-block;}
+	.more_info{margin: 0;width: auto;}
+	.more_info_engine{font-size:14px;}
+	.select_option_color{display:block !important;}
+	.select_option_color li a{width:100%;}
+	.tab-option .nav, .package-option, .miles{display:block !important;}
+	.short_nav{display:none;}
+	.like_show.text-right{margin-top: 10px;}
+	.vehiko_certification li, .jeep-features li{flex: 100%;}
+	.jeep-features li{margin-top: 25px;}
+	.jeep-features li img{margin-right:10px;}
+	.package-option p{padding: 4px 15px;}
+	.pay-option .dealers img{display:none;}
+	.find_out_popup .col-lg-6.pr-1, .find_out_popup .col-lg-6.pl-1{padding: 0px 8px !important;}
+	.dealers{margin-bottom:6px;}
+	.dealers p{font-size: 16px;}
+	.find_out_popup .modal-content .dealers h3{font-size: 18px;}
+	.label-select{margin-top:10px;}
+	.inventory-tabbing .nav-tabs{display: flex;flex-wrap: nowrap;overflow-x: scroll;white-space: nowrap;}
+	.inventory-tabbing .nav-tabs .nav-link.active{font-size:14px;}
+	.inventory-tabbing .nav-tabs .nav-link{padding: 13px 20px;}
+	.border-div .d-flex{display:block !important;}
+	.match-car a img{width:100%;}
+	.match-car_desc{margin-left: 0px;padding-top:15px;}
+	.match-car_desc h4{font-size:14px;margin-bottom: 0px;}
+	.match-car_desc .d-flex.mt-3{margin-top: 10px !important;}
+	.border-div .d-flex.mt-3{display:flex !important;}
+	.match-car_desc .d-flex h3{font-size:16px;}
+	.match-car_desc .d-flex h3 span, .match-car_desc .d-flex h3 label{font-size:14px;margin-bottom: 0;}
+	.match-car_desc .brand_btn{width: 100%;text-align: center;font-size: 15px;margin-bottom: 12px !important;display: block;}
+	.quick_info{margin: 0px -20px}
+	.quick_info_desc {padding: 20px 0px;}
+	.match-car, .quick_info_desc ul li{flex:100%;}
+	.match-car img{width:100%;}
+	.match-car .zoom_img img{width:auto;}
+	.match-car_desc .brand_btn.buying_process{margin-top: 0;}
+	.border-div{padding: 15px 15px 0px;}
+	.sharing-input input, .car-sharing-form .banner-form .form-row div:nth-child(1) .form-group .sharing-input{border-radius: 0!important;}
+	.faq_sharing .accord_block .card-header a{font-size:14px;padding: 15px 50px 15px 0px;}
+	.heading.mb-5{margin-bottom:20px !important;}
+	.short_by a{margin-bottom: 5px;font-size: 13px;padding: 4px 4px;margin-right: 2px;min-width: 99px;}
+	.short_by{padding: 15px 0px;}
+	.reserve-slider .carousel-item img{height: 260px;object-fit: cover;}
+	.reserve-slider .carousel-control-next, .reserve-slider .carousel-control-prev{width: 30px;height: 30px;font-size:16px;}
+	.reserve-slider .like_heart {width: 30px;height: 30px;font-size: 14px;line-height: 32px;}
+	.reserve-slider .carousel-control-next {right: 10px;}
+	.reserve-slider .carousel-control-prev {left: 10px;}
+	.three_colum {margin: 20px 0px;}
+	.two_colum li{flex: 100%;margin-bottom: 20px;}
+	.three_colum li{flex: 100%;}
+	.trip_start{margin-top: 30px;}
+	.hosted-desc h5{font-size: 16px;}
+	.hosted-logo{flex: 0 0 65px;}
+	.hosted_img{width: 65px;height: 65px;}
+	.rating-hosted{width: 65px;bottom: 5px;}
+	.overview-menu, .filters, .contain_section{display:block;}
+	.contain_section{padding-left:0;}
+	.filters{width:100%;}
+	.sbq-crump{display:none;}
+	.hosted-by{padding-bottom: 0px;}
+	.quick-links a{margin: 0px 0 8px;}
+	.sharing-input input{padding: 16px 10px 0px 5px;font-size: 14px;}
+	.top_band_location, .user-details>.d-flex{display:block !important;position: relative;}
+	.location_review.ml-3{margin-left:0 !Important;}
+	.top_band p{font-size: 12px;}
+	.price_div label{font-size: 16px;padding: 0px 7px;}
+	.price_div label small{font-size: 14px;display: block;line-height: 14px;}
+	.price_div{margin: 10px 0px 0px;}
+	.price_div label{margin-bottom:0;}
+	.like_div{position: absolute;top: 20px;right: 0;}
+	.like_div a img{max-width: 30px;}
+	.like_div a {margin: 0px 1px;}
+	.single {margin-right: 30px!important;}
+}
+
+@media (max-width: 576px){
+}

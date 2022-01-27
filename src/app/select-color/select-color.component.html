@@ -1,0 +1,158 @@
+<div class="trim_options">
+    <div class="container option_container">
+        <div class="trim">
+            <ul class="d-flex justify-content-between">
+                <li class="active">
+                    <div class="count">1</div>
+                    <div class="count_name">
+                        <p>Pick It</p>
+                        <small>Select Vehicle</small>
+                    </div>
+                </li>
+                <li>
+                    <div class="count">2</div>
+                    <div class="count_name">
+                        <p>Price It</p>
+                        <small>Get Vehiko Price</small>
+                    </div>
+                </li>
+                <li>
+                    <div class="count">3</div>
+                    <div class="count_name">
+                        <p>Drive It</p>
+                        <small>Schedule Test Drive</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<section class="trim-bg">
+    <div class="container option_container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="jeep-info">
+                    <h3>{{trim?.modelYear}} {{trim?.makeName}} {{trim?.modelName}}</h3>
+                    <label *ngIf="trim">{{trim?.versionName}} {{trim?.drivenWheels == '4WD'? '4x4':
+                        '2x2'}}</label>
+                    <div class="mt-4 mb-4 msrp-width">
+                        <div class="msrp">
+                            <div class="msrp-list d-flex justify-content-between align-items-end">
+                                <p>Base Price</p>
+                                <p><span>MSRP</span> {{totalPrice | currency:'USD':'symbol' : '1.0-0'}}</p>
+                            </div>
+                            <div class="msrp-list d-flex justify-content-between align-items-end">
+                                <p>Options</p>
+                                <p>{{optionPrice | currency:'USD':'symbol' : '1.0-0'}}</p>
+                            </div>
+                        </div>
+                        <div class="msrp_totle d-flex justify-content-between">
+                            <p>Total</p>
+                            <p class="text-right">{{totalPrice+optionPrice | currency:'USD':'symbol' : '1.0-0'}} <span>Plus taxes & fees.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="jeep-photo">
+                    <img src="{{trim?.imagePathUrl}}" class="img-fluid pt-4 d-block" [ngStyle]="{'color': 'red'}" />
+                    <div class="d-flex justify-content-between">
+                        <a [routerLink]="['/powertrain',urlMakeName,urlModelName,modelYear,vehicleId]"
+                            class="brand_btn_p"><i class="icofont-long-arrow-left"></i> Back | Powertrain</a>
+                        <a (click)="selectPackage()"
+                            class="brand_btn_p text-white">Next | Packages <i class="icofont-long-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="pt-0">
+    <div class="container option_container">
+        <div class="car-info shadow">
+            <div class="info_heading position-relative text-center">
+                <span>Select Color</span>
+            </div>
+            <div class="powertrain-option select_color">
+                <h4>Primary Paint</h4>
+                <ul class="select_option_color d-flex flex-wrap">
+                    <li *ngFor="let color of modelColors;let i = index" [ngClass]="(selectedColor == color) ? 'show': ''">
+                        <a (click)="selectColor(color)">
+                            <!-- <div class="color_code"><img src="assets/img/color_tick.png" /></div> -->
+                            <p>{{color.name}}</p>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a href="#">
+                            <div class="color_code color-2"><img src="assets/img/color_tick.png" /></div>
+                            <p>Bright White Clearcoat</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="color_code color-3"><img src="assets/img/color_tick.png" /></div>
+                            <p>Firecracker Red Clearcoat</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="color_code color-4"><img src="assets/img/color_tick.png" /></div>
+                            <p>Sarge Green Clearcoat</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="color_code color-5"><img src="assets/img/color_tick.png" /></div>
+                            <p>Sting-Gray Clearcoat</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="color_code color-6"><img src="assets/img/color_tick.png" /></div>
+                            <p>Mojito! Clearcoat</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="color_code color-7"><img src="assets/img/color_tick.png" /></div>
+                            <p>Hellayella Clearcoat</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="color_code color-8"><img src="assets/img/color_tick.png" /></div>
+                            <p>Punkn Metallic Clearcoat</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="color_code color-9"><img src="assets/img/color_tick.png" /></div>
+                            <p>Billet Silver Metallic Clearcoat</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="color_code color-10"><img src="assets/img/color_tick.png" /></div>
+                            <p>Granite Crystal Metallic Clearcoat</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="color_code color-11"><img src="assets/img/color_tick.png" /></div>
+                            <p>Bikini Pearlcoat</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="color_code color-12"><img src="assets/img/color_tick.png" /></div>
+                            <p>Ocean Blue Metallic Clearcoat</p>
+                        </a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

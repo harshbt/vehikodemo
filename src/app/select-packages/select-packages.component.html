@@ -1,0 +1,259 @@
+<div class="trim_options">
+    <div class="container option_container">
+        <div class="trim">
+            <ul class="d-flex justify-content-between">
+                <li class="active">
+                    <div class="count">1</div>
+                    <div class="count_name">
+                        <p>Pick It</p>
+                        <small>Select Vehicle</small>
+                    </div>
+                </li>
+                <li>
+                    <div class="count">2</div>
+                    <div class="count_name">
+                        <p>Price It</p>
+                        <small>Get Vehiko Price</small>
+                    </div>
+                </li>
+                <li>
+                    <div class="count">3</div>
+                    <div class="count_name">
+                        <p>Drive It</p>
+                        <small>Schedule Test Drive</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isData">
+    <section class="trim-bg">
+        <app-spinner *ngIf="!trim"></app-spinner>
+        <div class="container option_container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="jeep-info">
+                        <h3>{{trim?.modelYear}} {{trim?.makeName}} {{trim?.modelName}}</h3>
+                        <label *ngIf="trim">{{trim?.versionName}} {{trim?.drivenWheels == '4WD'? '4x4':
+                            '2x2'}}</label>
+                        <div class="mt-4 mb-4 msrp-width">
+                            <div class="msrp">
+                                <div class="msrp-list d-flex justify-content-between align-items-end">
+                                    <p>Base Price</p>
+                                    <p><span>MSRP</span> {{totalPrice | currency:'USD':'symbol' : '1.0-0'}}</p>
+                                </div>
+                                <div class="msrp-list d-flex justify-content-between align-items-end">
+                                    <p>Options</p>
+                                    <p>{{optionPrice | currency:'USD':'symbol' : '1.0-0'}}</p>
+                                </div>
+                            </div>
+                            <div class="msrp_totle d-flex justify-content-between">
+                                <p>Total</p>
+                                <p class="text-right">{{totalPrice+optionPrice | currency:'USD':'symbol' : '1.0-0'}}
+                                    <span>Plus taxes & fees.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="jeep-photo">
+                        <img src="{{trim?.imagePathUrl}}" class="img-fluid pt-4 d-block" />
+                        <!-- <div class="text-center">
+                        <a href="#" class="brand_btn">Next Step | Summery <i class="icofont-long-arrow-right"></i></a>
+                    </div> -->
+                        <div class="d-flex justify-content-between">
+                            <a [routerLink]="['/trim', urlMakeName, urlModelName, modelYear, vehicleId]"
+                                class="brand_btn_p text-white"><i class="icofont-long-arrow-left"></i>
+                                Back | Trim</a>
+                            <a href="#" class="brand_btn_p text-white">Next | Summary <i
+                                    class="icofont-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-0">
+        <div class="container option_container">
+            <div class="car-info shadow">
+                <div class="info_heading position-relative text-center">
+                    <span>Select Options</span>
+                </div>
+                <div class="tab-option">
+                    <ul class="nav nav-tabs trim_options " id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="color-tab" data-toggle="tab" href="#color" role="tab"
+                                aria-controls="color" aria-selected="true">Color</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="interior-tab" data-toggle="tab" href="#interior" role="tab"
+                                aria-controls="interior" aria-selected="false">interior</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="packages-tab" data-toggle="tab" href="#packages" role="tab"
+                                aria-controls="packages" aria-selected="true">Packages</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="powertrain-tab" data-toggle="tab" href="#powertrain" role="tab"
+                                aria-controls="powertrain" aria-selected="false">Options</a>
+                        </li>
+                        <!-- <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="exterior-tab" data-toggle="tab" href="#exterior" role="tab"
+                                aria-controls="exterior" aria-selected="false">Exterior</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="entertainment-tab" data-toggle="tab" href="#entertainment"
+                                role="tab" aria-controls="entertainment" aria-selected="false">entertainment</a>
+                        </li> -->
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="color" role="tabpanel" aria-labelledby="color-tab">
+                            <div class="powertrain">
+                                <div class="powertrain-option mt-4">
+                                    <div class="option-list">
+                                        <div class="option-menu" *ngFor="let color of modelColors;let i = index">
+                                            <div class="engine-type d-flex align-items-center justify-content-between">
+                                                <div class="custom-control custom-checkbox mr-sm-2"
+                                                    (click)="selectColor(color,template)">
+                                                    <input type="checkbox" class="custom-control-input" id="color"
+                                                        [checked]="selectedColor == color">
+
+                                                    <label class="custom-control-label"
+                                                        for="customControlAutosizing">{{color.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="interior" role="tabpanel" aria-labelledby="interior-tab">
+                            <div class="powertrain">
+                                <div class="powertrain-option mt-4">
+                                    <div class="option-list">
+                                        <div class="option-menu" *ngFor="let interior of selectInterior;let i = index">
+                                            <div class="engine-type d-flex align-items-center justify-content-between">
+                                                <div class="custom-control custom-checkbox mr-sm-2"
+                                                    (click)="selectedInterior(interior)">
+                                                    <input type="checkbox" class="custom-control-input" id="color"
+                                                        [checked]="selectedinterior == interior">
+                                                    <label class="custom-control-label"
+                                                        for="customControlAutosizing">{{interior.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="packages" role="tabpanel" aria-labelledby="packages-tab">
+                            <div class="powertrain">
+                                <div class="powertrain-option mt-4">
+                                    <div class="option-list">
+                                        <div class="option-menu" *ngFor="let package of packages;let i=index"
+                                            [ngClass]="(showSelected == package) ? 'show' : ''">
+                                            <div class="engine-type d-flex align-items-center justify-content-between">
+                                                <div class="custom-control custom-checkbox mr-sm-2"
+                                                    (click)="selectPackage(package,i)">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [checked]="selectedPackage[i]">
+                                                    <label class="custom-control-label"
+                                                        for="customControlAutosizing">{{package.name}}
+                                                        [{{package.optionCode}}]</label>
+                                                </div>
+                                                <div class="price-right" (click)="showMoreInfo(package)">
+                                                    <a href="javascript:void(0)" class="more_info"><i
+                                                            class="icofont-rounded-down"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="more_info_engine px-5">
+                                                <p *ngFor="let info of selectedPackageInfo" class="mb-0 info">
+                                                    {{info.content}}</p>
+                                            </div>
+                                        </div>                              
+                                    </div>
+                                </div>             
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="powertrain" role="tabpanel" aria-labelledby="powertrain-tab">
+                            <div class="powertrain">
+                                <div class="powertrain-option mt-4">
+                                    <div class="option-list">
+                                        <div class="option-menu" *ngFor="let powertrain of powertrains;let i = index"
+                                            [ngClass]="(showPowertrainInfo == powertrain) ? 'show': ''">
+                                            <div class="engine-type d-flex align-items-center justify-content-between">
+                                                <div class="custom-control custom-checkbox mr-sm-2"
+                                                    (click)="selectPowertrain(powertrain,i)">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [checked]="selectedPowertrain[i]">
+                                                    <label class="custom-control-label"
+                                                        for="customControlAutosizing">{{powertrain.name}}
+                                                        [{{powertrain.optionCode}}]</label>
+                                                </div>
+                                                <div class="price-right">
+                                                    <span>{{powertrain.msrp | currency:'USD':'symbol' : '1.0-0'}}</span>
+                                                    <a class="more_info" (click)="showPowertrain(powertrain)"><i
+                                                            class="icofont-rounded-down"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="more_info_engine px-5">
+                                                <p *ngFor="let info of powertrainInfo" class="mb-0 info">
+                                                    {{info.content}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="exterior" role="tabpanel" aria-labelledby="exterior-tab">...
+                        </div>
+                        <div class="tab-pane fade" id="entertainment" role="tabpanel"
+                            aria-labelledby="entertainment-tab">
+                            ...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div *ngIf="!isData">
+    <section class="trim-bg">
+        <div class="container option_container">
+            <div class="row text-center align-items-center" style="height: 300px;">
+                <div class="col">
+                    <h3 class="text-danger">404</h3>
+                    <h5 class="text-danger">No Data Found!</h5>
+                    <a href="#" class="brand_btn"><i class="icofont-long-arrow-left"></i> Back To Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="btn-close close pull-right" data-dismiss="modal" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+                  <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                      Second default radio
+                    </label>
+                  </div>
+                </div>             
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+</ng-template>

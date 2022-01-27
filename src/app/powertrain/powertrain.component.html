@@ -1,0 +1,221 @@
+<div class="trim_options">
+    <div class="container option_container">
+        <div class="trim">
+            <ul class="d-flex justify-content-between">
+                <li class="active">
+                    <div class="count">1</div>
+                    <div class="count_name">
+                        <p>Pick It</p>
+                        <small>Select Vehicle</small>
+                    </div>
+                </li>
+                <li>
+                    <div class="count">2</div>
+                    <div class="count_name">
+                        <p>Price It</p>
+                        <small>Get Vehiko Price</small>
+                    </div>
+                </li>
+                <li>
+                    <div class="count">3</div>
+                    <div class="count_name">
+                        <p>Drive It</p>
+                        <small>Schedule Test Drive</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<section class="trim-bg">
+    <div class="container option_container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="jeep-info">
+                    <h3>{{trim?.modelYear}} {{trim?.makeName}} {{trim?.modelName}}</h3>
+                    <label *ngIf="trim">{{trim?.versionName}} {{trim?.drivenWheels == '4WD'? '4x4':
+                        '2x2'}}</label>
+                    <div class="mt-4 mb-4 msrp-width">
+                        <div class="msrp">
+                            <div class="msrp-list d-flex justify-content-between align-items-end">
+                                <p>Base Price</p>
+                                <p><span>MSRP</span> {{trim?.msrp | currency:'USD':'symbol' : '1.0-0'}}</p>
+                            </div>
+                            <div class="msrp-list d-flex justify-content-between align-items-end">
+                                <p>Options</p>
+                                <p>{{optionPrice | currency:'USD':'symbol' : '1.0-0'}}</p>
+                            </div>
+                        </div>
+                        <div class="msrp_totle d-flex justify-content-between">
+                            <p>Total</p>
+                            <p class="text-right">{{totalPrice+optionPrice | currency:'USD':'symbol' : '1.0-0'}} <span>Plus taxes & fees.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="jeep-photo">
+                    <img src="{{trim?.imagePathUrl}}" class="img-fluid pt-4 d-block" />
+                    <div class="d-flex justify-content-between">
+                        <a [routerLink]="['/trim',urlMakeName,urlModelName,modelYear]" class="brand_btn_p"><i
+                                class="icofont-long-arrow-left"></i> Back Step | Trim</a>
+                        <a (click)="color()" class="brand_btn_p text-white">Next Step | Color <i
+                                class="icofont-long-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pt-0">
+    <div class="container option_container">
+        <app-spinner *ngIf="!powertrains"></app-spinner>
+        <div class="car-info shadow">
+            <div class="info_heading position-relative text-center">
+                <span>Select Powertrain</span>
+            </div>
+            <div class="powertrain">
+                <div class="powertrain-option">
+                    <!-- <h4>Engine</h4> -->
+                    <div class="option-list">
+                        <!-- <div class="option-menu">
+                            <div class="engine-type d-flex align-items-center justify-content-between">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                    <label class="custom-control-label" for="customControlAutosizing">Engine: 3.6L V6
+                                        24V VVT UPG I w/ESS <i class="icofont-info-circle" data-toggle="tooltip"
+                                            data-placement="right" title="Tooltip on top"></i></label>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="option-menu" *ngFor="let powertrain of powertrains;let i = index"
+                            [ngClass]="(showPowertrainInfo == powertrain) ? 'show': ''">
+                            <div class="engine-type d-flex align-items-center justify-content-between">
+                                <div class="custom-control custom-checkbox mr-sm-2"
+                                    (click)="selectPowertrain(powertrain,i)">
+                                    <input type="checkbox" class="custom-control-input"
+                                        [checked]="selectedPowertrain[i]">
+                                    <label class="custom-control-label"
+                                        for="customControlAutosizing">{{powertrain.name}}
+                                        [{{powertrain.optionCode}}]</label>
+                                </div>
+                                <div class="price-right">
+                                    <span>{{powertrain.msrp | currency:'USD':'symbol' : '1.0-0'}}</span>
+                                    <a class="more_info" (click)="showPowertrain(powertrain)"><i
+                                            class="icofont-rounded-down"></i></a>
+                                </div>
+                            </div>
+                            <div class="more_info_engine px-5">
+                                <p *ngFor="let info of powertrainInfo" class="mb-0 info">{{info.content}}</p>
+                            </div>
+                        </div>
+                        <!-- <div class="option-menu">
+                            <div class="engine-type d-flex align-items-center justify-content-between">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                    <label class="custom-control-label" for="customControlAutosizing">Engine: 3.0L V6
+                                        Turbo Diesel w/ESS G3 <i class="icofont-info-circle" data-toggle="tooltip"
+                                            data-placement="right" title="Tooltip on top"></i></label>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <!--  -->
+                <!-- <div class="powertrain-option mt-4">
+                    <h4>Transmission</h4>
+                    <div class="option-list">
+                        <div class="option-menu">
+                            <div class="engine-type d-flex align-items-center justify-content-between">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                    <label class="custom-control-label" for="customControlAutosizing">Transmission:
+                                        6-Speed Manual <i class="icofont-info-circle" data-toggle="tooltip"
+                                            data-placement="right" title="Tooltip on top"></i></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option-menu">
+                            <div class="engine-type d-flex align-items-center justify-content-between">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                    <label class="custom-control-label" for="customControlAutosizing">Transmission:
+                                        8-Speed Automatic (850RE) <i class="icofont-info-circle" data-toggle="tooltip"
+                                            data-placement="right" title="Tooltip on top"></i></label>
+                                </div>
+                                <div class="price-right">
+                                    <span>$2,750</span>
+                                    <a href="javascript:void(0)" class="more_info"><i
+                                            class="icofont-rounded-down"></i></a>
+                                </div>
+                            </div>
+                            <div class="more_info_engine">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has been the industry's standard dummy text ever since the 1500s, when an unknown
+                                printer took a galley of type and scrambled it to make a type specimen book.
+                            </div>
+                        </div>
+                        <div class="option-menu">
+                            <div class="engine-type d-flex align-items-center justify-content-between">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                    <label class="custom-control-label" for="customControlAutosizing">Transmission:
+                                        8-Speed Automatic (8HP75) <i class="icofont-info-circle" data-toggle="tooltip"
+                                            data-placement="right" title="Tooltip on top"></i></label>
+                                </div>
+                                <div class="price-right">
+                                    <span>$2,750</span>
+                                    <a href="javascript:void(0)" class="more_info"><i
+                                            class="icofont-rounded-down"></i></a>
+                                </div>
+                            </div>
+                            <div class="more_info_engine">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has been the industry's standard dummy text ever since the 1500s, when an unknown
+                                printer took a galley of type and scrambled it to make a type specimen book.
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!--  -->
+                <!-- <div class="powertrain-option mt-4">
+                    <h4>Axle Ratio</h4>
+                    <div class="option-list">
+                        <div class="option-menu">
+                            <div class="engine-type d-flex align-items-center justify-content-between">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                    <label class="custom-control-label" for="customControlAutosizing">3.45 Rear Axle
+                                        Ratio <i class="icofont-info-circle" data-toggle="tooltip"
+                                            data-placement="right" title="Tooltip on top"></i></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option-menu">
+                            <div class="engine-type d-flex align-items-center justify-content-between">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                    <label class="custom-control-label" for="customControlAutosizing">3.73 Rear Axle
+                                        Ratio <i class="icofont-info-circle" data-toggle="tooltip"
+                                            data-placement="right" title="Tooltip on top"></i></label>
+                                </div>
+                                <div class="price-right">
+                                    <span>$2,750</span>
+                                    <a href="javascript:void(0)" class="more_info"><i
+                                            class="icofont-rounded-down"></i></a>
+                                </div>
+                            </div>
+                            <div class="more_info_engine">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has been the industry's standard dummy text ever since the 1500s, when an unknown
+                                printer took a galley of type and scrambled it to make a type specimen book.
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,16 @@
+.brand_btn_p {
+    cursor: pointer;
+    background: #0799d8;
+    color: #fff;
+    height: 42px;
+    display: inline-block;
+    line-height: 42px;
+    border-radius: 30px;
+    padding: 0px 10px;
+    margin: 10px 0 40px;
+}
+
+.brand_btn_p i {
+    font-size: 24px;
+    vertical-align: middle;
+}

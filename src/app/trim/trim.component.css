@@ -1,0 +1,23 @@
+.sleectedtrim {
+    background-color: #d9f6f8;
+    text-decoration-color: #9cecf1;
+
+}
+
+.selectedYear {
+    background: #0799d8;
+    color: #ffff;
+}
+
+.jeep-img{
+    width: 20%;
+}
+
+li:before {
+    content: "\f00e"; /* FontAwesome Unicode */
+    font-family: IcoFont;
+    display: inline-block;
+    color: #0899d8;
+    margin-left: -1.3em; /* same as padding-left set on li */
+    width: 1.3em; /* same as padding-left set on li */
+  }
