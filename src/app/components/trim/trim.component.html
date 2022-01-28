@@ -1,0 +1,106 @@
+<div class="trim_options">
+    <div class="container option_container">
+        <div class="trim">
+            <ul class="d-flex justify-content-between">
+                <li class="active">
+                    <div class="count">1</div>
+                    <div class="count_name">
+                        <p>Pick It</p>
+                        <small>Select Vehicle</small>
+                    </div>
+                </li>
+                <li>
+                    <div class="count">2</div>
+                    <div class="count_name">
+                        <p>Price It</p>
+                        <small>Get Vehiko Price</small>
+                    </div>
+                </li>
+                <li>
+                    <div class="count">3</div>
+                    <div class="count_name">
+                        <p>Drive It</p>
+                        <small>Schedule Test Drive</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isData">
+    <section class="trim-bg">
+        <div class="container option_container">
+            <app-spinner *ngIf="!selectedTrimData"></app-spinner>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="jeep-info">
+                        <h3>{{selectedTrimData?.modelYear}} {{selectedTrimData?.makeName}}
+                            {{selectedTrimData?.modelName}}
+                        </h3>
+                        <label *ngIf="selectedTrimData">{{selectedTrimData?.versionName}}
+                            {{selectedTrimData?.drivenWheels == '4WD'? '4x4':
+                            '2x2'}}</label>
+                        <ul>
+                            <li *ngFor="let description of selectedTrimData?.description">{{description.content}}</li>
+                        </ul>
+                        <!-- <a href="#">View All</a> -->
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="jeep-photo">
+                        <img src="{{selectedTrimData?.imagePathUrl}}" class="img-fluid pt-4 d-block" />
+                        <div class="text-center">
+                            <a (click)="buildAndPrice()" class="brand_btn text-light">Build & Price <i
+                                    class="icofont-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-0">
+        <div class="container option_container">
+            <div class="car-info shadow">
+                <button class="btn mx-1" *ngFor="let year of modelYears" (click)="selectYear(year)"
+                    [ngClass]="(modelYear == year) ? 'selectedYear': ''">{{year}}</button>
+                <div class="info_heading position-relative text-center">
+                    <span *ngIf="trims">Select Trim</span>
+                </div>
+                <div class="trim_info_list">
+                    <div class="trim-jeep d-flex align-items-center justify-content-between"
+                        *ngFor="let trim of trims; let i =index;"
+                        [ngClass]="(selectedTrimData == trim) ? 'sleectedtrim': ''" (click)="selectTrim(trim)">
+                        <div class="jeep-info_bottm d-flex aling-items-center">
+                            <div class="jeep-img mr-3"><img src="{{trim.imagePathUrl}}" width="100%" /></div>
+                            <div class="jeep-content">
+                                <a>{{trim.modelYear}} {{trim.makeName}} {{trim.modelName}}
+                                    <span>{{trim.versionName}}
+                                        {{trim.drivenWheels == '4WD'? '4x4': '2x2'}}</span></a>
+                            </div>
+                        </div>
+                        <div class="jeep-price text-right">
+                            <span>Starting at</span>
+                            <h2>{{trim.msrp | currency:'USD':'symbol' : '1.0-0'}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div *ngIf="!isData">
+    <section class="trim-bg">
+        <div class="container option_container">
+            <div class="row text-center align-items-center" style="height: 300px;">
+                <div class="col text-danger">
+                    <h3>404</h3>
+                    <h5>No Data Found!</h5>
+                    <a routerLink="" class="brand_btn"><i class="icofont-long-arrow-left"></i> Back To Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

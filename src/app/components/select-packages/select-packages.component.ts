@@ -1,10 +1,9 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, Event } from '@angular/router';
-import { PowertrainService } from '../services/powertrain.service';
-import { SelectColorService } from '../services/select-color.service';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { PowertrainService } from '../../services/powertrain.service';
+import { SelectColorService } from '../../services/select-color.service';
 
-import { SelectPackageService } from "../services/select-package.service";
+import { SelectPackageService } from "../../services/select-package.service";
 
 @Component({
   selector: 'app-select-packages',
@@ -29,38 +28,38 @@ export class SelectPackagesComponent implements OnInit {
   selectedPowertrain = [];
   showPowertrainInfo: any;
   powertrainInfo: any;
+  optionRules: any;
+  requiredOptions: any;
+  interiors: any;
+  selectedInterior: any;
   isData: boolean = true;
-  selectInterior : any;
-  selectedinterior : any;
-  modalRef?: BsModalRef;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private selectPackageService: SelectPackageService,
     private selectColorService: SelectColorService,
-    private powertrainService: PowertrainService,
-    private modalService: BsModalService) { 
-      this.router.events.subscribe((event: Event) => {
-        if (event instanceof NavigationEnd) {
-          this.urlModelName = this.route.snapshot.params["urlModelName"];
-          this.urlMakeName = this.route.snapshot.params["urlMakeName"];
-          this.modelYear = this.route.snapshot.params["modelYear"];
-          this.vehicleId = this.route.snapshot.params["vehicleId"];
-          if (this.vehicleId) {
-            this.getTrim();
-            this.getPackages();
-            this.getModelColors();
-            this.getPowertrain();
-          } else {
-            this.router.navigate(['/404']);
-          }
+    private powertrainService: PowertrainService) {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.urlModelName = this.route.snapshot.params["urlModelName"];
+        this.urlMakeName = this.route.snapshot.params["urlMakeName"];
+        this.modelYear = this.route.snapshot.params["modelYear"];
+        this.vehicleId = this.route.snapshot.params["vehicleId"];
+        if (this.vehicleId) {
+          this.getTrim();
+          this.getPackages();
+          this.getModelColors();
+          this.getPowertrain();
+          this.getInterirors();
+        } else {
+          this.router.navigate(['/404']);
         }
-      });
-    }
-
-    
+      }
+    });
+  }
 
   ngOnInit(): void {
+    debugger
     this.urlModelName = this.route.snapshot.params["urlModelName"];
     this.urlMakeName = this.route.snapshot.params["urlMakeName"];
     this.modelYear = this.route.snapshot.params["modelYear"];
@@ -70,7 +69,7 @@ export class SelectPackagesComponent implements OnInit {
       this.getPackages();
       this.getModelColors();
       this.getPowertrain();
-      this.getInterior(); 
+      this.getInterirors();
     } else {
       this.router.navigate(['/404']);
     }
@@ -87,7 +86,7 @@ export class SelectPackagesComponent implements OnInit {
   }
 
   getTrim() {
-    this.selectPackageService.getTrimData(this.vehicleId,this.modelYear).subscribe((trim: any) => {
+    this.selectPackageService.getTrimData(this.vehicleId, this.modelYear).subscribe((trim: any) => {
       if (trim.isSuccess) {
         this.trim = trim.data[0];
         this.totalPrice = this.trim.msrp;
@@ -95,16 +94,6 @@ export class SelectPackagesComponent implements OnInit {
         this.isData = false;
       }
     });
-  }
-
-  getInterior(){
-    this.selectPackageService.getInterior(this.vehicleId).subscribe((interior:any)=>{
-      if(interior.isSuccess) {
-        this.selectInterior = interior.data;
-      }else{
-        //do nothing
-      }
-    })
   }
 
   getModelColors() {
@@ -124,6 +113,16 @@ export class SelectPackagesComponent implements OnInit {
         this.powertrains = options.data;
       } else {
         //do nothing
+      }
+    })
+  }
+
+  getInterirors() {
+    this.selectPackageService.getInterior(this.vehicleId).subscribe((interior: any) => {
+      if (interior.isSuccess) {
+        this.interiors = interior.data;
+      } else {
+        // do nothing
       }
     })
   }
@@ -150,6 +149,20 @@ export class SelectPackagesComponent implements OnInit {
     });
   }
 
+  getPowertrainRules(optionId) {
+    this.selectPackageService.getPowertrainRule(this.vehicleId, optionId).subscribe((rules: any) => {
+      if (rules.isSuccess) {
+        this.optionRules = rules.data;
+        this.optionRules.map((rule: any) => {
+          if (rule.ruleType == 'Requires') {
+
+          }
+        })
+        document.getElementById("openModalButton").click();
+      }
+    })
+  }
+
   showMoreInfo(packageData) {
     if (packageData == this.showSelected) {
       this.showSelected = null;
@@ -168,23 +181,16 @@ export class SelectPackagesComponent implements OnInit {
     }
   }
 
-  selectColor(color, template: TemplateRef<any>) {
+  selectColor(color) {
+    // document.getElementById("openModalButton").click();
     if (color == this.selectedColor) {
       this.selectedColor = null;
-      this.optionPrice -= this.selectedColor.msrp;
+      this.optionPrice -= this.selectedColor?.msrp || 0;
     } else {
       this.selectedColor = color;
-      this.modalRef = this.modalService.show(template);
-      this.optionPrice += this.selectedColor.msrp;
+      this.optionPrice += this.selectedColor?.msrp || 0;
+      this.getPowertrainRules(this.selectedColor.optionId);
     }
-  }
-
-  selectedInterior(interior){
-      if(interior == this.selectedinterior){
-        this.selectedinterior = null;
-      } else {
-        this.selectedinterior = interior;
-      }
   }
 
   selectPowertrain(powertrain, i) {
@@ -202,6 +208,17 @@ export class SelectPackagesComponent implements OnInit {
       this.showPowertrainInfo = null;
     } else {
       this.getPowertrainInfo(powertrain);
+    }
+  }
+
+  selectInterior(interior) {
+    if (interior == this.selectedInterior) {
+      this.selectedInterior = null;
+      this.optionPrice -= this.selectedInterior?.msrp || 0;
+    } else {
+      this.selectedInterior = interior;
+      this.optionPrice += this.selectedInterior?.msrp || 0;
+      this.getPowertrainRules(this.selectedInterior.optionId);
     }
   }
 

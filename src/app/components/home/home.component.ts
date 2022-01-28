@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { MakeModalService } from '../services/make-modal.service';
-import { Make } from '../models/make';
-import { Model } from '../models/model';
+import { MakeModalService } from '../../services/make-modal.service';
+import { Make } from '../../models/make';
+import { Model } from '../../models/model';
 
 
 @Component({
@@ -51,7 +51,9 @@ export class HomeComponent implements OnInit {
           slidesToScroll: 2
         }
       }
-      
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
     ]
   };
 
@@ -93,7 +95,7 @@ export class HomeComponent implements OnInit {
       this.zipCode = this.makeModelForm.get('zipCode')?.value;
       this.selectedMake = this.makes.filter(make => make.makeId == this.makeId);
       this.selectedModel = this.models.filter(model => model.modelId == this.modelId);
-      this.router.navigate(['/trim',this.selectedMake[0].urlMakeName,this.selectedModel[0].urlModelName,this.selectedModel[0].modelYear,'']);
+      this.router.navigate(['/trim',this.selectedMake[0].urlMakeName,this.selectedModel[0].urlModelName,this.selectedModel[0].modelYear]);
     }
   }
 }

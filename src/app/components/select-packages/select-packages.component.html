@@ -61,9 +61,6 @@
                 <div class="col-lg-5">
                     <div class="jeep-photo">
                         <img src="{{trim?.imagePathUrl}}" class="img-fluid pt-4 d-block" />
-                        <!-- <div class="text-center">
-                        <a href="#" class="brand_btn">Next Step | Summery <i class="icofont-long-arrow-right"></i></a>
-                    </div> -->
                         <div class="d-flex justify-content-between">
                             <a [routerLink]="['/trim', urlMakeName, urlModelName, modelYear, vehicleId]"
                                 class="brand_btn_p text-white"><i class="icofont-long-arrow-left"></i>
@@ -118,12 +115,14 @@
                                         <div class="option-menu" *ngFor="let color of modelColors;let i = index">
                                             <div class="engine-type d-flex align-items-center justify-content-between">
                                                 <div class="custom-control custom-checkbox mr-sm-2"
-                                                    (click)="selectColor(color,template)">
-                                                    <input type="checkbox" class="custom-control-input" id="color"
+                                                    (click)="selectColor(color)">
+                                                    <input type="checkbox" class="custom-control-input"
                                                         [checked]="selectedColor == color">
-
                                                     <label class="custom-control-label"
                                                         for="customControlAutosizing">{{color.name}}</label>
+                                                </div>
+                                                <div class="price-right">
+                                                    <span>{{color.msrp | currency:'USD':'symbol' : '1.0-0'}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,14 +134,18 @@
                             <div class="powertrain">
                                 <div class="powertrain-option mt-4">
                                     <div class="option-list">
-                                        <div class="option-menu" *ngFor="let interior of selectInterior;let i = index">
+                                        <div class="option-menu" *ngFor="let interior of interiors;">
                                             <div class="engine-type d-flex align-items-center justify-content-between">
                                                 <div class="custom-control custom-checkbox mr-sm-2"
-                                                    (click)="selectedInterior(interior)">
-                                                    <input type="checkbox" class="custom-control-input" id="color"
-                                                        [checked]="selectedinterior == interior">
+                                                    (click)="selectInterior(interior)">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [checked]="selectedInterior == interior">
                                                     <label class="custom-control-label"
-                                                        for="customControlAutosizing">{{interior.name}}</label>
+                                                        for="customControlAutosizing">{{interior.name}}
+                                                        [{{interior.code}}]</label>
+                                                </div>
+                                                <div class="price-right">
+                                                    <span>{{interior.msrp | currency:'USD':'symbol' : '1.0-0'}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -165,8 +168,9 @@
                                                         for="customControlAutosizing">{{package.name}}
                                                         [{{package.optionCode}}]</label>
                                                 </div>
-                                                <div class="price-right" (click)="showMoreInfo(package)">
-                                                    <a href="javascript:void(0)" class="more_info"><i
+                                                <div class="price-right">
+                                                    <span>{{package.msrp | currency:'USD':'symbol' : '1.0-0'}}</span>
+                                                    <a class="more_info" (click)="showMoreInfo(package)"><i
                                                             class="icofont-rounded-down"></i></a>
                                                 </div>
                                             </div>
@@ -174,9 +178,9 @@
                                                 <p *ngFor="let info of selectedPackageInfo" class="mb-0 info">
                                                     {{info.content}}</p>
                                             </div>
-                                        </div>                              
+                                        </div>
                                     </div>
-                                </div>             
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="powertrain" role="tabpanel" aria-labelledby="powertrain-tab">
@@ -210,11 +214,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="exterior" role="tabpanel" aria-labelledby="exterior-tab">...
+                        <!-- <div class="tab-pane fade" id="exterior" role="tabpanel" aria-labelledby="exterior-tab">...
                         </div>
                         <div class="tab-pane fade" id="entertainment" role="tabpanel"
                             aria-labelledby="entertainment-tab">
-                            ...</div>
+                            ...</div> -->
                     </div>
                 </div>
             </div>
@@ -226,34 +230,44 @@
     <section class="trim-bg">
         <div class="container option_container">
             <div class="row text-center align-items-center" style="height: 300px;">
-                <div class="col">
-                    <h3 class="text-danger">404</h3>
-                    <h5 class="text-danger">No Data Found!</h5>
-                    <a href="#" class="brand_btn"><i class="icofont-long-arrow-left"></i> Back To Home</a>
+                <div class="col text-danger">
+                    <h3>404</h3>
+                    <h5>No Data Found!</h5>
+                    <a routerLink="" class="brand_btn"><i class="icofont-long-arrow-left"></i> Back To Home</a>
                 </div>
             </div>
         </div>
     </section>
 </div>
 
-<ng-template #template>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Modal</h4>
-        <button type="button" class="btn-close close pull-right" data-dismiss="modal" aria-label="Close" (click)="modalRef?.hide()">
-            <span aria-hidden="true" class="visually-hidden">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-                  <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
-                      Second default radio
-                    </label>
-                  </div>
-                </div>             
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+<button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#exampleModalCenter">Open
+    Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">BUILT OPTIONS CHANGES</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <strong>Options to be added</strong>
+                <div class="border border-dark">
+                    <p>abcde</p>
                 </div>
-</ng-template>
+                <strong>Options that are required</strong>
+                <div class="border border-dark">
+                    <p>abcde</p>
+                </div>
+                <div class="my-3">
+                    <button type="button" class="btn btn-modal mx-1 text-white">Ok</button>
+                    <button type="button" class="btn btn-modal mx-1 text-white" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

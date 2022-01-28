@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { PowertrainService } from '../services/powertrain.service';
+import { PowertrainService } from '../../services/powertrain.service';
 
 @Component({
   selector: 'app-powertrain',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, Event } from '@angular/router';
 
-import { TrimService } from '../services/trim.service';
+import { TrimService } from '../../services/trim.service';
 
 @Component({
   selector: 'app-trim',
@@ -16,6 +16,7 @@ export class TrimComponent implements OnInit {
   trims: any;
   selectedTrimData: any;
   vehicleId: number;
+  isData: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,9 +28,12 @@ export class TrimComponent implements OnInit {
         this.urlModelName = this.route.snapshot.params["urlModelName"];
         this.urlMakeName = this.route.snapshot.params["urlMakeName"];
         this.modelYear = this.route.snapshot.params["modelYear"];
+        this.vehicleId = this.route.snapshot.params["vehicleId"];
         if (this.urlModelName && this.modelYear) {
           this.getTrims();
           this.getModelYears();
+        } else {
+          this.router.navigate(['/404']);
         }
       }
     });
@@ -43,6 +47,8 @@ export class TrimComponent implements OnInit {
     if (this.urlModelName && this.modelYear) {
       this.getTrims();
       this.getModelYears();
+    } else {
+      this.router.navigate(['/404']);
     }
   }
 
@@ -53,14 +59,14 @@ export class TrimComponent implements OnInit {
         this.trims = trim.data;
         if (this.vehicleId) {
           this.selectedTrimData = this.trims.filter(data => data.vehicleId == this.vehicleId)[0];
-          if(!(this.selectedTrimData && this.selectedTrimData.modelYear ==this.modelYear)){
-            this.router.navigate(['/404']);
+          if (!(this.selectedTrimData && this.selectedTrimData.modelYear == this.modelYear)) {
+            this.isData = false;
           }
         } else {
           this.selectedTrimData = this.trims[0];
         }
-      }else{
-        this.router.navigate(['/404']);
+      } else {
+        this.isData = false;
       }
     });
   }
@@ -86,8 +92,8 @@ export class TrimComponent implements OnInit {
 
   selectYear(year) {
     this.modelYear = year;
-    this.vehicleId =null;
-    this.router.navigate(['/trim', this.urlMakeName, this.urlModelName, year]);
+    this.vehicleId = null;
+    this.router.navigate(['/trim', this.urlMakeName, this.urlModelName, year, '']);
     this.getTrims();
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { SelectColorService } from '../services/select-color.service';
+import { SelectColorService } from '../../services/select-color.service';
 
 @Component({
   selector: 'app-select-color',

@@ -2,6 +2,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap');
 @import url('./assets/css/icofont.min.css');
+
 /* Provide sufficient contrast against white background */
 a {
     text-decoration: none;
@@ -3253,7 +3254,7 @@ textarea.input_field {
 }
 
 .jeep-photo {
-    background: "./assets/img/dot.png" no-repeat top right;
+    background: "./assets/img/dot.png"no-repeat top right;
     height: 100%;
 }
 
@@ -3419,6 +3420,11 @@ textarea.input_field {
 
 .engine-type .custom-checkbox .custom-control-input:checked~.custom-control-label::after {
     background-image: url(./assets/img/tick.png);
+    background-size: cover;
+}
+
+.uncheck .custom-control-label::after {
+    background-image: url(./assets/img/cross.png);
     background-size: cover;
 }
 
@@ -5036,7 +5042,7 @@ p.heading_jeep span {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: "./assets/img/select-arrow.png" no-repeat right 15px center;
+    background: "./assets/img/select-arrow.png"no-repeat right 15px center;
 }
 
 .mt-25 {
@@ -5538,7 +5544,7 @@ p.heading_jeep span {
         font-size: 14px;
     }
 
-    .brand_btn_p{
+    .brand_btn_p {
         height: 32px;
         line-height: 32px;
         padding: 0px 20px;
@@ -5901,6 +5907,22 @@ p.heading_jeep span {
 
 @media (max-width: 576px) {}
 
-.info{
+.info {
     font-size: 14px;
+}
+
+.modal-header {
+    background-color: #0799d8;
+}
+
+.modal-body {
+    background: #f9f9f9;
+}
+
+.modal-footer {
+    background: #f9f9f9;
+}
+
+.btn-modal {
+    background-color: #0799d8;
 }

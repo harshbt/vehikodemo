@@ -17,12 +17,15 @@ export class SelectPackageService {
     return this.http.get(`${environment.apiURL}/master/description?vehicleId=${vehicleId}&OptionCode=${optionCode}`);
   }
 
-  getTrimData(vehicleId:number,modelYear:number){
-    debugger
+  getInterior(vehicleId: number){
+    return this.http.get(`${environment.apiURL}/Master/interior?vehicleid=${vehicleId}`);
+  }
+
+  getTrimData(vehicleId: number,modelYear: number){
     return this.http.get(`${environment.apiURL}/SingleTrim/getsingletrim?vehicleId=${vehicleId}&modelYear=${modelYear}`);
   }
 
-  getInterior(vehicleId:number){
-    return this.http.get(`${environment.apiURL}/Master/Interior?vehicleId=${vehicleId}`)
+  getPowertrainRule(vehicleId: number, optionId: number){
+    return this.http.get(`${environment.apiURL}/PowerTrainRules/allpowertrainrules?vehicleId=${vehicleId}&optionId=${optionId}`);
   }
 }

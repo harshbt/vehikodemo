@@ -3,23 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { FooterComponent } from './footer/footer.component';
-import { TrimComponent } from './trim/trim.component';
-import { PowertrainComponent } from './powertrain/powertrain.component';
-import { SelectColorComponent } from './select-color/select-color.component';
-import { SelectPackagesComponent } from './select-packages/select-packages.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { TrimComponent } from './components/trim/trim.component';
+import { PowertrainComponent } from './components/powertrain/powertrain.component';
+import { SelectColorComponent } from './components/select-color/select-color.component';
+import { SelectPackagesComponent } from './components/select-packages/select-packages.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
-import { SpinnerComponent } from './spinner/spinner.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -42,9 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    SlickCarouselModule,
-    BrowserAnimationsModule,
-    ModalModule.forRoot()
+    SlickCarouselModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

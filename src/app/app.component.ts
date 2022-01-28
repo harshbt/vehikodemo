@@ -9,6 +9,5 @@ export class AppComponent {
   title = 'Vehiko.Ang';
 
   constructor() {  }
-
-
+  
 }
