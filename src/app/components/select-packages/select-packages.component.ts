@@ -34,6 +34,12 @@ export class SelectPackagesComponent implements OnInit {
   selectedInterior: any;
   isData: boolean = true;
 
+  optionsselect :any=[
+    [{id:1234,value:'Black Unique Sport Cloth 40/20/40 Front-Seats[GB]',msrp:0},
+  {id:1243,value:'Black Unique Leather Bucket Seats[JB]',msrp:0},
+  {id:4356,value:'Black/Medium Dark Slate Cloth 40/20/40 Front Seat[CS]',msrp:0},
+  {id:4644,value:'Black/Medium Dark Slate Cloth 40/Console/40 Front-Seat',msrp:12}],[{id:1234,value:'Black Unique Sport Cloth 40/20/40 Front-Seats[GB]',msrp:0},{id:1243,value:'Black Unique Leather Bucket Seats[JB]',msrp:0}]];
+
   constructor(private route: ActivatedRoute,
     private router: Router,
     private selectPackageService: SelectPackageService,
@@ -59,7 +65,7 @@ export class SelectPackagesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
+    
     this.urlModelName = this.route.snapshot.params["urlModelName"];
     this.urlMakeName = this.route.snapshot.params["urlMakeName"];
     this.modelYear = this.route.snapshot.params["modelYear"];
